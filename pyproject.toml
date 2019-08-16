@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "dnsresolver"
+version = "0.1.0"
+description = ""
+authors = ["j0lv3r4 <juan@jolvera.dev>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+dnspython = "^1.16"
+bottle = "^0.12.17"
+black = {version = "^18.3-alpha.0", allows-prereleases = true}
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

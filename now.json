@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "name": "dns.now.sh",
+  "alias": "dns.now.sh",
+  "routes": [
+    { "src": "/.*", "dest": "/"}
+  ],
+  "builds": [
+    { "src":  "index.py", "use": "@now/python" }
+  ]
+}

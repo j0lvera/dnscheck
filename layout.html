@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>What DNS?</title>
+    <style>
+        body {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            color: #eee;
+            background-color: #222;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        a:visited,
+        a {
+            color: #fff;
+        }
+
+        main {
+            max-width: 35em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        input[type="text"] {
+            background-color: #1b1b1b;
+            border: 1px solid #181818;
+            color: #eee;
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1em;
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #111;
+        }
+
+        th {
+            padding: 0.3em 0.5em;
+        }
+
+        td {
+            padding: 0.8em 0.5em;
+        }
+
+        tbody tr:nth-child(odd) td,
+        tbody tr:nth-child(odd) th {
+            background-color: #111;
+        }
+
+        footer {
+            text-align: center;
+        }
+
+        /**
+         * Helpers
+         */
+
+        .visuallyhidden {
+            position: absolute;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            width: 1px;
+            margin: -1px;
+            padding: 0;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>What DNS?</h1>
+</header>
+
+<main> {{ !base }}</main>
+
+<footer>Deployed in Now. <a href="#">Source code</a></footer>
+</body>
+</html>

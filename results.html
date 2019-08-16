@@ -1,0 +1,18 @@
+% rebase('./layout.html')
+
+<table>
+    <thead>
+    <tr>
+        <th><p>Type</p></th>
+        <th><p>Value</p></th>
+    </tr>
+    </thead>
+    <tbody>
+    % for k in result:
+    <tr>
+        <td>{{k['record']}}</td>
+        <td>{{k['value']}}</td>
+    </tr>
+    % end
+    </tbody>
+</table>
