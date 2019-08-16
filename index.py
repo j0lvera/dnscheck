@@ -82,7 +82,6 @@ ids = [
 def index():
     if request.method == "POST":
         domain = request.forms.get("domain")
-        print("domain", domain)
         return redirect("/{0}".format(domain))
     return template("form.html")
 
