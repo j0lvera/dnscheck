@@ -126,12 +126,23 @@ setuptools = "*"
 six = ">=1.10.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Python 2 and 3 compatibility utilities"
 name = "six"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*"
 version = "1.12.0"
+
+[[package]]
+category = "main"
+description = "Extract the top level domain (TLD) from the URL given."
+name = "tld"
+optional = false
+python-versions = "*"
+version = "0.9.3"
+
+[package.dependencies]
+six = ">=1.9"
 
 [[package]]
 category = "main"
@@ -150,7 +161,7 @@ python-versions = ">=2.7"
 version = "0.5.2"
 
 [metadata]
-content-hash = "9923337bc94d72b9a01fb90f1618e0cac9d8cd3c34c044e217a9598737386c0e"
+content-hash = "3dd53692f29dff18e1614c1e40c90af57321f75d7fb703fc3fe2312c0ecdf1aa"
 python-versions = "^3.6"
 
 [metadata.hashes]
@@ -168,5 +179,6 @@ pluggy = ["0825a152ac059776623854c1543d65a4ad408eb3d33ee114dff91e57ec6ae6fc", "b
 py = ["64f65755aee5b381cea27766a3a147c3f15b9b6b9ac88676de66ba2ae36793fa", "dc639b046a6e2cff5bbe40194ad65936d6ba360b52b3c3fe1d08a82dd50b5e53"]
 pytest = ["3f193df1cfe1d1609d4c583838bea3d532b18d6160fd3f55c9447fdca30848ec", "e246cf173c01169b9617fc07264b7b1316e78d7a650055235d6d897bc80d9660"]
 six = ["3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c", "d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"]
+tld = ["13fce7a3068034504580831b01e2e792c8969aa340c4613b43cd4993069b8415", "f766638e4e972445ce18e4dc0fadc0189c0a2a4f7d15e50c3c25d49af9cb1744"]
 toml = ["229f81c57791a41d65e399fc06bf0848bab550a9dfd5ed66df18ce5f05e73d5c", "235682dd292d5899d361a811df37e04a8828a5b1da3115886b73cf81ebc9100e", "f1db651f9657708513243e61e6cc67d101a39bad662eaa9b5546f789338e07a3"]
 zipp = ["4970c3758f4e89a7857a973b1e2a5d75bcdc47794442f2e2dd4fe8e0466e809a", "8a5712cfd3bb4248015eb3b0b3c54a5f6ee3f2425963ef2a0125b8bc40aafaec"]

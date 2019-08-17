@@ -1,4 +1,4 @@
-% rebase('./layout.html')
+% rebase('layout.html')
 
 <table>
     <thead>
@@ -16,3 +16,14 @@
     % end
     </tbody>
 </table>
+
+
+<div id="try-again">
+    <p>Try another domain.</p>
+
+    <form action="/" method="post">
+        <label for="domain" aria-label="Domain name"/>
+        <input name="domain" type="text" placeholder="jolvera.dev" required>
+        <button type="submit" class="visuallyhidden">Perform Check!</button>
+    </form>
+</div>

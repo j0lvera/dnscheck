@@ -9,6 +9,7 @@ python = "^3.6"
 dnspython = "^1.16"
 bottle = "^0.12.17"
 black = {version = "^18.3-alpha.0", allows-prereleases = true}
+tld = "^0.9.3"
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
 

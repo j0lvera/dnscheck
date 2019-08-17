@@ -1,7 +1,11 @@
 __version__ = "0.1.0"
 
-from bottle import Bottle, template, request, redirect
+import re
 import dns.resolver
+from bottle import Bottle, template, request, redirect
+from tld import get_tld
+
+# from tld.exceptions import TldBadUrl
 
 app = Bottle()
 
@@ -81,28 +85,54 @@ ids = [
 @app.route("/", method=["GET", "POST"])
 def index():
     if request.method == "POST":
-        domain = request.forms.get("domain")
+        try:
+            domain = validate(request.forms.get("domain"))
+        except Exception as e:
+            return template("form.html", error="Invalid domain.")
+        # Form submission successful
         return redirect("/{0}".format(domain))
-    return template("form.html")
+    # GET request
+    return template("form.html", error=None)
 
 
 @app.get("/<domain>")
 def domain(domain):
-    result = resolve(domain)
+    try:
+        result = resolve(domain)
+    except Exception as e:
+        print(e)
     return template("results.html", result=result)
 
 
-# TODO:
-# 1. Remove http or https if present
-# 2. Validate domain
+def validate(domain: str):
+    """We expect `get_tld` to throw an exception if domain is invalid."""
+    schema = r"http(s?)\:\/\/"
+    if not re.match(schema, domain):
+        tld = get_tld("http://{}".format(domain))
+    else:
+        tld = get_tld(domain)
+    return re.sub(schema, "", domain)
+
+
 def resolve(domain: str):
     result = []
     for record in ids:
         try:
             answers = dns.resolver.query(domain, record)
+
             data = [{"record": record, "value": rdata.to_text()} for rdata in answers]
             for item in data:
                 result.append(item)
         except Exception as e:
             print(e)
     return result
+
+
+@app.error(404)
+def err404():
+    return template("error.html", error="Nothing here. Sorry.")
+
+
+@app.error(500)
+def err500():
+    return template("error.html", error="Something went wrong. Contact Juan.")
