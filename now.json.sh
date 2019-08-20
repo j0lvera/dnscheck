@@ -33,7 +33,7 @@ for i in "${strings[0]}"; do
   "version": 2,
   "name": "$i.dnscheck.now.sh",
   "alias": "$i.dnscheck.now.sh",
-  "regions": [""],
+  "regions": ["$i"],
   "routes": [
     { "src": "./*", "dest": "/" }
   ],
