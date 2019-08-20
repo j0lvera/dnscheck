@@ -89,7 +89,7 @@ ids = [
 def index():
     domain = request.forms.get("domain")
 
-    response.set_header("Access-Control-Allow-Orogin", "dnscheck.now.sh")
+    response.set_header("Access-Control-Allow-Origin", "dnscheck.now.sh")
     response.add_header("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS")
     response.content_type = "application/json"
 

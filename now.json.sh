@@ -46,6 +46,4 @@ EOF
 
   # Generate configuration files
   echo "$JSON" >now.region."$i".json
-  # Deploy
-  echo now --token $ZEIT_TOKEN --local-config now.region."$i".json --target production
 done

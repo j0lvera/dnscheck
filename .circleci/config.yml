@@ -12,3 +12,7 @@ jobs:
       - deploy:
           command: |
             ./now.json.sh
+            now --token $ZEIT_TOKEN --local-config now.region.arn1.json --target production
+            now --token $ZEIT_TOKEN --local-config now.region.bom1.json --target production
+            now --token $ZEIT_TOKEN --local-config now.region.bru1.json --target production
+            now --token $ZEIT_TOKEN --local-config now.region.cdg1.json --target production
