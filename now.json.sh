@@ -26,24 +26,23 @@ strings=(
   #  zrh1
 )
 
-for i in "${strings[0]}"; do
-  JSON=$(
-    cat <<-EOF
+for i in "${strings[@]}"; do
+    JSON=$(
+        cat <<-EOF
 {
-  "version": 2,
-  "name": "$i-dnscheck.now.sh",
-  "alias": "$i-dnscheck.now.sh",
-  "regions": ["$i"],
-  "routes": [
-    { "src": "./*", "dest": "/" }
-  ],
-  "builds": [
-    { "src": "index.py", "use": "@now/python" }
-  ]
+    "version": 2,
+    "name": "$i-dnscheck.now.sh",
+    "alias": "$i-dnscheck.now.sh",
+    "regions": ["$i"],
+    "routes": [
+        { "src": "/.*", "dest": "/"}
+    ],
+    "builds": [
+        { "src":  "index.py", "use": "@now/python" }
+    ]
 }
 EOF
-  )
+    )
 
-  # Generate configuration files
-  echo "$JSON" >now.region."$i".json
+    echo "$JSON" >now.region."$i".json
 done
