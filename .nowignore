@@ -1,0 +1,6 @@
+.circleci
+.pytest_cache
+tests
+now.json.sh
+poetry.lock
+myproject.toml

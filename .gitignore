@@ -230,3 +230,6 @@ fabric.properties
 
 .now
 .idea
+.next
+.vscode
+node_modules

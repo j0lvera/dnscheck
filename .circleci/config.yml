@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      - checkout
+      - run:
+          command: |
+            sudo npm install --global --unsafe-perm now
+            chmod +x ./now.json.sh
+      - deploy:
+          command: |
+            ./now.json.sh

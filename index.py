@@ -1,14 +1,17 @@
 __version__ = "0.1.0"
 
 import re
+import os
 import dns.resolver
-from bottle import Bottle, template, request, redirect
+from bottle import Bottle, request, json_dumps, response
 from tld import get_tld
 
 # from tld.exceptions import TldBadUrl
 
 app = Bottle()
 
+
+print(os.getenv("ENV"))
 
 ids = [
     "NONE",
@@ -82,26 +85,22 @@ ids = [
 ]
 
 
-@app.route("/", method=["GET", "POST"])
+@app.post("/")
 def index():
-    if request.method == "POST":
-        try:
-            domain = validate(request.forms.get("domain"))
-        except Exception as e:
-            return template("form.html", error="Invalid domain.")
-        # Form submission successful
-        return redirect("/{0}".format(domain))
-    # GET request
-    return template("form.html", error=None)
+    domain = request.forms.get("domain")
 
+    response.set_header("Access-Control-Allow-Orogin", "dnscheck.now.sh")
+    response.add_header("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS")
+    response.content_type = "application/json"
 
-@app.get("/<domain>")
-def domain(domain):
     try:
-        result = resolve(domain)
+        domain = validate(domain)
+        dns_results = resolve(domain)
     except Exception as e:
-        print(e)
-    return template("results.html", result=result)
+        print("err!", e)
+        response.status = 400
+        return json_dumps({"message": "Invalid domain."})
+    return json_dumps({"data": dns_results})
 
 
 def validate(domain: str):
@@ -126,13 +125,3 @@ def resolve(domain: str):
         except Exception as e:
             print(e)
     return result
-
-
-@app.error(404)
-def err404():
-    return template("error.html", error="Nothing here. Sorry.")
-
-
-@app.error(500)
-def err500():
-    return template("error.html", error="Something went wrong. Contact Juan.")
