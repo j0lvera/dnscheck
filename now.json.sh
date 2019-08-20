@@ -31,8 +31,8 @@ for i in "${strings[0]}"; do
     cat <<-EOF
 {
   "version": 2,
-  "name": "$i.dnscheck.now.sh",
-  "alias": "$i.dnscheck.now.sh",
+  "name": "$i-dnscheck.now.sh",
+  "alias": "$i-dnscheck.now.sh",
   "regions": ["$i"],
   "routes": [
     { "src": "./*", "dest": "/" }
