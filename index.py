@@ -3,12 +3,10 @@ __version__ = "0.1.0"
 import re
 import dns.resolver
 from bottle import Bottle, request, json_dumps, response
-from truckpad.bottle.cors import CorsPlugin, enable_cors
+from cors import CorsPlugin, enable_cors
 from tld import get_tld
 
 app = Bottle()
-
-app.install(CorsPlugin(origins=["dnscheck.now.sh", "dns.now.sh", "dnscheck.ngrok.io"]))
 
 ids = [
     "NONE",
@@ -87,9 +85,6 @@ ids = [
 def index():
     domain = request.forms.get("domain")
 
-    # response.set_header("Access-Control-Allow-Origin", "dnscheck.now.sh")
-    response.set_header("Access-Control-Allow-Origin", "*")
-    response.add_header("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS")
     response.content_type = "application/json"
 
     try:
@@ -124,3 +119,6 @@ def resolve(domain: str):
         except Exception as e:
             print(e)
     return result
+
+
+app.install(CorsPlugin(origins=["dnscheck.now.sh", "dns.now.sh", "dnscheck.ngrok.io"]))
