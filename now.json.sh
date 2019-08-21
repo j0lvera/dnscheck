@@ -6,7 +6,6 @@ strings=(
   bom1
   bru1
   cdg1
-  chs1
   dub1
   gru1
   hnd1

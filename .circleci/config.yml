@@ -15,7 +15,6 @@ jobs:
             now --token $ZEIT_TOKEN --local-config now.region.arn1.json --prod
             now --token $ZEIT_TOKEN --local-config now.region.bom1.json --prod
             now --token $ZEIT_TOKEN --local-config now.region.bru1.json --prod
-            now --token $ZEIT_TOKEN --local-config now.region.chs1.json --prod
             now --token $ZEIT_TOKEN --local-config now.region.dub1.json --prod
             now --token $ZEIT_TOKEN --local-config now.region.gru1.json --prod
             now --token $ZEIT_TOKEN --local-config now.region.hnd1.json --prod
