@@ -12,7 +12,24 @@ jobs:
       - deploy:
           command: |
             ./now.json.sh
-            now --token $ZEIT_TOKEN --local-config now.region.arn1.json --target production
-            now --token $ZEIT_TOKEN --local-config now.region.bom1.json --target production
-            now --token $ZEIT_TOKEN --local-config now.region.bru1.json --target production
-            now --token $ZEIT_TOKEN --local-config now.region.cdg1.json --target production
+            now --token $ZEIT_TOKEN --local-config now.region.arn1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.bom1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.bru1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.chs1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.cle1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.dub1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.gru1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.hel1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.hkg1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.hnd1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.iad1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.icn1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.lax1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.lhr1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.pdx1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.sfo1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.sin1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.syd1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.tpe1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.yul1.json --prod
+            now --token $ZEIT_TOKEN --local-config now.region.zrh1.json --prod
