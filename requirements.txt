@@ -4,6 +4,7 @@ attrs==19.1.0
 beautifulsoup4==4.8.0
 black==18.9b0
 bottle==0.12.17
+bottle-cors==0.1.5
 Click==7.0
 dnspython==1.16.0
 importlib-metadata==0.19
