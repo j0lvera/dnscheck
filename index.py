@@ -10,7 +10,6 @@ from tld import get_tld
 app = Bottle()
 
 ORIGINS = os.getenv("ORIGINS").split(",")
-ENV = os.getenv("ENV")
 
 ids = [
     "NONE",

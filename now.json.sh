@@ -26,6 +26,10 @@ for i in "${strings[@]}"; do
     "name": "$i-dnscheck.now.sh",
     "alias": "$i-dnscheck.now.sh",
     "regions": ["$i"],
+    "env": {
+      "ORIGINS": "@dnscheck-origins",
+      "ENV": "production"
+    },
     "routes": [
         { "src": "/.*", "dest": "/"}
     ],
