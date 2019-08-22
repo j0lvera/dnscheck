@@ -1,5 +1,6 @@
 __version__ = "0.1.0"
 
+import os
 import re
 import dns.resolver
 from bottle import Bottle, request, json_dumps, response
@@ -7,6 +8,9 @@ from cors import CorsPlugin, enable_cors
 from tld import get_tld
 
 app = Bottle()
+
+ORIGINS = os.getenv("ORIGINS").split(",")
+ENV = os.getenv("ENV")
 
 ids = [
     "NONE",
@@ -84,12 +88,17 @@ ids = [
 @app.post("/")
 def index():
     domain = request.forms.get("domain")
+    dns_server = request.forms.get("dns_server")
+
+    if dns_server is None:
+        response.status = 400
+        response.content_type = "application/json"
+        return json_dumps({"message": "Param dns_server missing."})
 
     response.content_type = "application/json"
-
     try:
         domain = validate(domain)
-        dns_results = resolve(domain)
+        dns_results = resolve(domain, dns_server=dns_server)
     except Exception as e:
         print("err!", e)
         response.status = 400
@@ -107,18 +116,23 @@ def validate(domain: str):
     return re.sub(schema, "", domain)
 
 
-def resolve(domain: str):
-    result = []
+def resolve(domain: str, dns_server: str):
+    resolver = dns.resolver.Resolver(configure=False)
+    resolver.nameservers = [dns_server]
+
+    print("nameservers", resolver.nameservers)
+
+    result = [{"dns_server": dns_server}]
+
     for record in ids:
         try:
-            answers = dns.resolver.query(domain, record)
-
+            answers = resolver.query(domain, record)
             data = [{"record": record, "value": rdata.to_text()} for rdata in answers]
             for item in data:
                 result.append(item)
         except Exception as e:
-            print(e)
+            print("error when trying to resolve", e)
     return result
 
 
-app.install(CorsPlugin(origins=["dnscheck.now.sh", "dns.now.sh", "dnscheck.ngrok.io"]))
+app.install(CorsPlugin(origins=ORIGINS))

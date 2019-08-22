@@ -2,6 +2,10 @@
   "version": 2,
   "name": "dns.now.sh",
   "alias": "dns.now.sh",
+  "env": {
+    "ORIGINS": "@dnscheck-origins",
+    "ENV": "production"
+  },
   "routes": [
     { "src": "./*", "dest": "/" }
   ],
