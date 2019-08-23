@@ -2,8 +2,8 @@ __version__ = "0.1.0"
 
 import os
 import dns.resolver
-from dns.exception import Timeout, SyntaxError
-from bottle import Bottle, request
+from dns.exception import Timeout
+from bottle import Bottle, request, redirect
 from cors import CorsPlugin, enable_cors
 from tld import exceptions
 from utils import jsonify, validate_domain, resolve_domain
@@ -12,6 +12,11 @@ app = Bottle()
 
 ORIGINS = os.getenv("ORIGINS").split(",")
 ENV = os.getenv("ENV")
+
+
+@app.get("/")
+def redirect_to_app():
+    return redirect("https://dnscheck.now.sh")
 
 
 @enable_cors
