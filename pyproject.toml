@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "dnsresolver"
 version = "0.1.0"
-description = ""
+description = "Serverless Lambda that provides DNS records from a given domain."
 authors = ["j0lv3r4 <juan@jolvera.dev>"]
 
 [tool.poetry.dependencies]
@@ -9,8 +9,8 @@ python = "^3.6"
 dnspython = "^1.16"
 bottle = "^0.12.17"
 tld = "^0.9.3"
-webtest = "^2.0"
 [tool.poetry.dev-dependencies]
+webtest = "^2.0"
 black = {version = "^18.3-alpha.0", allows-prereleases = true}
 pytest = "^3.0"
 
