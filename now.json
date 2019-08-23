@@ -1,11 +1,17 @@
 {
   "version": 2,
-  "name": "dnscheck",
-  "alias": "dnscheck.now.sh",
+  "name": "dnscheck-backend",
+  "github": {
+    "enabled": false
+  },
+  "env": {
+    "ORIGINS": "@dnscheck-origins",
+    "ENV": "production"
+  },
   "routes": [
-    { "src": "/.*", "dest": "/"}
+    { "src": "./*", "dest": "/" }
   ],
   "builds": [
-    { "src":  "index.py", "use": "@now/python" }
+    { "src": "index.py", "use": "@now/python" }
   ]
 }

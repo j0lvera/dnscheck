@@ -1,14 +1,15 @@
 __version__ = "0.1.0"
 
+import os
 import re
 import dns.resolver
-from bottle import Bottle, template, request, redirect
+from bottle import Bottle, request, json_dumps, response
+from cors import CorsPlugin, enable_cors
 from tld import get_tld
-
-# from tld.exceptions import TldBadUrl
 
 app = Bottle()
 
+ORIGINS = os.getenv("ORIGINS").split(",")
 
 ids = [
     "NONE",
@@ -82,26 +83,26 @@ ids = [
 ]
 
 
-@app.route("/", method=["GET", "POST"])
+@enable_cors
+@app.post("/")
 def index():
-    if request.method == "POST":
-        try:
-            domain = validate(request.forms.get("domain"))
-        except Exception as e:
-            return template("form.html", error="Invalid domain.")
-        # Form submission successful
-        return redirect("/{0}".format(domain))
-    # GET request
-    return template("form.html", error=None)
+    domain = request.forms.get("domain")
+    dns_server = request.forms.get("dns_server")
 
+    if dns_server is None:
+        response.status = 400
+        response.content_type = "application/json"
+        return json_dumps({"message": "Param dns_server missing."})
 
-@app.get("/<domain>")
-def domain(domain):
+    response.content_type = "application/json"
     try:
-        result = resolve(domain)
+        domain = validate(domain)
+        dns_results = resolve(domain, dns_server=dns_server)
     except Exception as e:
-        print(e)
-    return template("results.html", result=result)
+        print("err!", e)
+        response.status = 400
+        return json_dumps({"message": "Invalid domain."})
+    return json_dumps({"data": dns_results})
 
 
 def validate(domain: str):
@@ -114,25 +115,23 @@ def validate(domain: str):
     return re.sub(schema, "", domain)
 
 
-def resolve(domain: str):
-    result = []
+def resolve(domain: str, dns_server: str):
+    resolver = dns.resolver.Resolver(configure=False)
+    resolver.nameservers = [dns_server]
+
+    print("nameservers", resolver.nameservers)
+
+    result = [{"dns_server": dns_server}]
+
     for record in ids:
         try:
-            answers = dns.resolver.query(domain, record)
-
+            answers = resolver.query(domain, record)
             data = [{"record": record, "value": rdata.to_text()} for rdata in answers]
             for item in data:
                 result.append(item)
         except Exception as e:
-            print(e)
+            print("error when trying to resolve", e)
     return result
 
 
-@app.error(404)
-def err404():
-    return template("error.html", error="Nothing here. Sorry.")
-
-
-@app.error(500)
-def err500():
-    return template("error.html", error="Something went wrong. Contact Juan.")
+app.install(CorsPlugin(origins=ORIGINS))
