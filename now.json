@@ -1,7 +1,9 @@
 {
   "version": 2,
-  "name": "dns.now.sh",
-  "alias": "dns.now.sh",
+  "name": "dnscheck-backend",
+  "github": {
+    "enabled": false
+  },
   "env": {
     "ORIGINS": "@dnscheck-origins",
     "ENV": "production"
