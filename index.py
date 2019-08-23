@@ -10,6 +10,7 @@ from tld import get_tld
 app = Bottle()
 
 ORIGINS = os.getenv("ORIGINS").split(",")
+ENV = os.getenv("ENV")
 
 ids = [
     "NONE",
@@ -134,4 +135,5 @@ def resolve(domain: str, dns_server: str):
     return result
 
 
+debug = True if ENV == "development" else False
 app.install(CorsPlugin(origins=ORIGINS))
