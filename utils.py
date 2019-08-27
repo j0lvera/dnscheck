@@ -1,6 +1,7 @@
-import re
 import json
 import dns.resolver
+import dns.name
+import dns.query
 from dns.exception import Timeout
 from bottle import response
 from tld import get_tld
@@ -77,6 +78,56 @@ ids = [
 ]
 
 
+def get_authoritative_nameserver(domain: str):
+    """
+    Looks up the Authoritative DNS server from a given domain.
+
+    :param str domain: domain name in valid URL format
+    :return: List of authoritative DNS server IPs
+    :rtype: list
+    """
+
+    resolver = dns.resolver.get_default_resolver()
+    nameserver = resolver.nameservers[0]
+
+    tld_ = get_tld(domain, fix_protocol=True)
+
+    print("looking up {0} on {1}".format(tld_, nameserver))
+    query = dns.message.make_query(tld_, dns.rdatatype.NS)
+    query_answer = dns.query.udp(query, nameserver)
+
+    if len(query_answer.authority) > 0:
+        rrsets = query_answer.authority
+    elif len(query_answer.additional) > 0:
+        rrsets = [query_answer.additional]
+    else:
+        rrsets = query_answer.answer
+
+    result = []
+
+    for rrset in rrsets:
+        for rr in rrset:
+            if rr.rdtype == dns.rdatatype.SOA:
+                print("Same server is authoritative for {}".format(tld_))
+            elif rr.rdtype == dns.rdatatype.A:
+                ns = rr.items[0].address
+                print("Glue record for {0}: {1}".format(rr.name, ns))
+            elif rr.rdtype == dns.rdatatype.NS:
+                authority = rr.target
+                ns = resolver.query(authority).rrset[0].to_text()
+                print(
+                    "{0} {1} is authoritative for {2}; ttl {3}".format(
+                        authority, ns, tld_, rrset.ttl
+                    )
+                )
+                result.append(ns)
+            else:
+                print("Ignoring {}".format(rr))
+
+    print("result", result)
+    return result
+
+
 def resolve_domain(domain: str, dns_server: str):
     resolver = dns.resolver.Resolver(configure=False)
     resolver.nameservers = [dns_server]
@@ -93,24 +144,20 @@ def resolve_domain(domain: str, dns_server: str):
                 result.append(item)
         except Timeout as e:
             """As soon as resolver times out we want to raise and stop the rest."""
-            print("Timeout inside resolve_domain", e)
+            # print("Timeout inside resolve_domain", e)
             raise Timeout
         except dns.exception.DNSException as e:
             """We let pass these because most of the time is specific records 
             not being present."""
-            print("DNSException", e)
+            # print("DNSException", e)
             pass
     return result
 
 
 def validate_domain(domain: str):
     """We expect `get_tld` to throw an exception if domain is invalid."""
-    schema = r"http(s?)\:\/\/"
-    if not re.match(schema, domain):
-        get_tld("http://{}".format(domain))
-    else:
-        get_tld(domain)
-    return re.sub(schema, "", domain)
+    res = get_tld(domain, fix_protocol=True, as_object=True)
+    return res.fld
 
 
 def jsonify(*args, **kwargs):
@@ -128,5 +175,5 @@ def jsonify(*args, **kwargs):
         # Remove element from response
         del data["status"]
 
-    response.content_type = 'application/json"'
+    response.content_type = "application/json"
     return json.dumps(data)

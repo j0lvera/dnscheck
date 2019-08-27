@@ -9,9 +9,9 @@
     "ENV": "production"
   },
   "routes": [
-    { "src": "./*", "dest": "/" }
+     { "src": "/.*", "dest": "index.py" }
   ],
   "builds": [
-    { "src": "index.py", "use": "@now/python" }
+    { "src": "*.py", "use": "@now/python" }
   ]
 }

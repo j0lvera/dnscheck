@@ -6,17 +6,37 @@ from dns.exception import Timeout
 from bottle import Bottle, request, redirect
 from cors import CorsPlugin, enable_cors
 from tld import exceptions
-from utils import jsonify, validate_domain, resolve_domain
+from utils import jsonify, validate_domain, resolve_domain, get_authoritative_nameserver
 
 app = Bottle()
 
-ORIGINS = os.getenv("ORIGINS").split(",")
-ENV = os.getenv("ENV")
+ORIGINS = os.getenv("ORIGINS", "*").split(",")
+ENV = os.getenv("ENV", "development")
 
 
 @app.get("/")
 def redirect_to_app():
     return redirect("https://dnscheck.now.sh")
+
+
+@enable_cors
+@app.post("/authoritative_nameserver")
+def post_auth_ns():
+    domain = request.forms.get("domain")
+
+    if domain is None:
+        return jsonify(status=400, message="Param domain missing.")
+
+    try:
+        nameserver_list = get_authoritative_nameserver(domain)
+    except exceptions.TldDomainNotFound as e:
+        print("TldDomainNotFound", e)
+        return jsonify(status=400, message=str(e))
+    except exceptions.TldBadUrl as e:
+        print("TldBadUrl", e)
+        return jsonify(status=400, message=str(e))
+
+    return jsonify(status=200, message=nameserver_list)
 
 
 @enable_cors
