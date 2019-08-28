@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dnsresolver"
-version = "0.2.0"
+version = "0.2.1"
 description = "Serverless Lambda that provides DNS records from a given domain."
 authors = ["j0lv3r4 <juan@jolvera.dev>"]
 
