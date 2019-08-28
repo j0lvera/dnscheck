@@ -90,10 +90,11 @@ def get_authoritative_nameserver(domain: str):
     resolver = dns.resolver.get_default_resolver()
     nameserver = resolver.nameservers[0]
 
-    tld_ = get_tld(domain, fix_protocol=True)
+    tld_ = get_tld(domain, fix_protocol=True, as_object=True)
+    domain = tld_.fld
 
-    print("looking up {0} on {1}".format(tld_, nameserver))
-    query = dns.message.make_query(tld_, dns.rdatatype.NS)
+    print("looking up {0} on {1}".format(domain, nameserver))
+    query = dns.message.make_query(domain, dns.rdatatype.NS)
     query_answer = dns.query.udp(query, nameserver)
 
     if len(query_answer.authority) > 0:
@@ -105,10 +106,12 @@ def get_authoritative_nameserver(domain: str):
 
     result = []
 
+    print("Looking up %s on %s" % (domain, nameserver))
+
     for rrset in rrsets:
         for rr in rrset:
             if rr.rdtype == dns.rdatatype.SOA:
-                print("Same server is authoritative for {}".format(tld_))
+                print("Same server is authoritative for {}".format(domain))
             elif rr.rdtype == dns.rdatatype.A:
                 ns = rr.items[0].address
                 print("Glue record for {0}: {1}".format(rr.name, ns))
@@ -117,7 +120,7 @@ def get_authoritative_nameserver(domain: str):
                 ns = resolver.query(authority).rrset[0].to_text()
                 print(
                     "{0} {1} is authoritative for {2}; ttl {3}".format(
-                        authority, ns, tld_, rrset.ttl
+                        authority, ns, domain, rrset.ttl
                     )
                 )
                 result.append(ns)
