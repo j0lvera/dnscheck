@@ -1,45 +1,54 @@
 [[package]]
-category = "dev"
-description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 name = "appdirs"
-optional = false
-python-versions = "*"
 version = "1.4.3"
-
-[[package]]
+description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 category = "dev"
-description = "Atomic file writes."
-name = "atomicwrites"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.3.0"
-
-[[package]]
-category = "dev"
-description = "Classes Without Boilerplate"
-name = "attrs"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "19.1.0"
-
-[[package]]
-category = "dev"
-description = "Screen-scraping library"
-name = "beautifulsoup4"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "atomicwrites"
+version = "1.3.0"
+description = "Atomic file writes."
+category = "dev"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[[package]]
+name = "attrs"
+version = "19.1.0"
+description = "Classes Without Boilerplate"
+category = "dev"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[package.extras]
+dev = ["coverage", "hypothesis", "pympler", "pytest", "six", "zope.interface", "sphinx", "pre-commit"]
+docs = ["sphinx", "zope.interface"]
+tests = ["coverage", "hypothesis", "pympler", "pytest", "six", "zope.interface"]
+
+[[package]]
+name = "beautifulsoup4"
 version = "4.8.0"
+description = "Screen-scraping library"
+category = "dev"
+optional = false
+python-versions = "*"
 
 [package.dependencies]
 soupsieve = ">=1.2"
 
+[package.extras]
+html5lib = ["html5lib"]
+lxml = ["lxml"]
+
 [[package]]
-category = "dev"
-description = "The uncompromising code formatter."
 name = "black"
+version = "18.9b0"
+description = "The uncompromising code formatter."
+category = "dev"
 optional = false
 python-versions = ">=3.6"
-version = "18.9b0"
 
 [package.dependencies]
 appdirs = "*"
@@ -47,192 +56,289 @@ attrs = ">=17.4.0"
 click = ">=6.5"
 toml = ">=0.9.4"
 
+[package.extras]
+d = ["aiohttp (>=3.3.2)"]
+
 [[package]]
-category = "main"
-description = "Fast and simple WSGI-framework for small web-applications."
 name = "bottle"
+version = "0.12.17"
+description = "Fast and simple WSGI-framework for small web-applications."
+category = "main"
 optional = false
 python-versions = "*"
-version = "0.12.17"
 
 [[package]]
-category = "dev"
-description = "Composable command line interface toolkit"
 name = "click"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "7.0"
+description = "Composable command line interface toolkit"
+category = "dev"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
-category = "dev"
-description = "Cross-platform colored terminal text."
-marker = "sys_platform == \"win32\""
 name = "colorama"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "0.4.1"
-
-[[package]]
-category = "main"
-description = "DNS toolkit"
-name = "dnspython"
+description = "Cross-platform colored terminal text."
+category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.16.0"
 
 [[package]]
-category = "dev"
-description = "Read metadata from Python packages"
+name = "dnspython"
+version = "1.16.0"
+description = "DNS toolkit"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[package.extras]
+DNSSEC = ["pycryptodome", "ecdsa (>=0.13)"]
+IDNA = ["idna (>=2.1)"]
+
+[[package]]
 name = "importlib-metadata"
+version = "0.19"
+description = "Read metadata from Python packages"
+category = "dev"
 optional = false
 python-versions = ">=2.7,!=3.0,!=3.1,!=3.2,!=3.3"
-version = "0.19"
 
 [package.dependencies]
 zipp = ">=0.5"
 
-[[package]]
-category = "dev"
-description = "More routines for operating on iterables, beyond itertools"
-name = "more-itertools"
-optional = false
-python-versions = ">=3.4"
-version = "7.2.0"
+[package.extras]
+docs = ["sphinx", "rst.linker"]
+testing = ["importlib-resources"]
 
 [[package]]
+name = "more-itertools"
+version = "7.2.0"
+description = "More routines for operating on iterables, beyond itertools"
 category = "dev"
-description = "plugin and hook calling mechanisms for python"
+optional = false
+python-versions = ">=3.4"
+
+[[package]]
 name = "pluggy"
+version = "0.12.0"
+description = "plugin and hook calling mechanisms for python"
+category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "0.12.0"
 
 [package.dependencies]
 importlib-metadata = ">=0.12"
 
-[[package]]
-category = "dev"
-description = "library with cross-python path, ini-parsing, io, code, log facilities"
-name = "py"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.8.0"
+[package.extras]
+dev = ["pre-commit", "tox"]
 
 [[package]]
+name = "py"
+version = "1.10.0"
+description = "library with cross-python path, ini-parsing, io, code, log facilities"
 category = "dev"
-description = "pytest: simple powerful testing with Python"
-name = "pytest"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[[package]]
+name = "pytest"
 version = "3.10.1"
+description = "pytest: simple powerful testing with Python"
+category = "dev"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [package.dependencies]
 atomicwrites = ">=1.0"
 attrs = ">=17.4.0"
-colorama = "*"
+colorama = {version = "*", markers = "sys_platform == \"win32\""}
 more-itertools = ">=4.0.0"
 pluggy = ">=0.7"
 py = ">=1.5.0"
-setuptools = "*"
 six = ">=1.10.0"
 
 [[package]]
-category = "main"
-description = "Python 2 and 3 compatibility utilities"
 name = "six"
+version = "1.12.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*"
-version = "1.12.0"
 
 [[package]]
-category = "dev"
-description = "A modern CSS selector implementation for Beautiful Soup."
 name = "soupsieve"
+version = "1.9.3"
+description = "A modern CSS selector implementation for Beautiful Soup."
+category = "dev"
 optional = false
 python-versions = "*"
-version = "1.9.3"
 
 [[package]]
-category = "main"
-description = "Extract the top level domain (TLD) from the URL given."
 name = "tld"
+version = "0.9.3"
+description = "Extract the top level domain (TLD) from the URL given."
+category = "main"
 optional = false
 python-versions = "*"
-version = "0.9.3"
 
 [package.dependencies]
 six = ">=1.9"
 
 [[package]]
-category = "dev"
-description = "Python Library for Tom's Obvious, Minimal Language"
 name = "toml"
-optional = false
-python-versions = "*"
 version = "0.10.0"
-
-[[package]]
-category = "main"
-description = "Waitress WSGI server"
-name = "waitress"
+description = "Python Library for Tom's Obvious, Minimal Language"
+category = "dev"
 optional = false
 python-versions = "*"
-version = "1.4.2"
 
 [[package]]
+name = "waitress"
+version = "1.4.2"
+description = "Waitress WSGI server"
 category = "dev"
-description = "WSGI request and response object"
+optional = false
+python-versions = "*"
+
+[package.extras]
+docs = ["Sphinx (>=1.8.1)", "docutils", "pylons-sphinx-themes (>=1.0.9)"]
+testing = ["nose", "coverage (>=5.0)"]
+
+[[package]]
 name = "webob"
+version = "1.8.5"
+description = "WSGI request and response object"
+category = "dev"
 optional = false
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*"
-version = "1.8.5"
+
+[package.extras]
+docs = ["Sphinx (>=1.7.5)", "pylons-sphinx-themes"]
+testing = ["pytest (>=3.1.0)", "coverage", "pytest-cov", "pytest-xdist"]
 
 [[package]]
-category = "dev"
-description = "Helper to test WSGI applications"
 name = "webtest"
+version = "2.0.33"
+description = "Helper to test WSGI applications"
+category = "dev"
 optional = false
 python-versions = "*"
-version = "2.0.33"
 
 [package.dependencies]
-WebOb = ">=1.2"
 beautifulsoup4 = "*"
 six = "*"
 waitress = ">=0.8.5"
+WebOb = ">=1.2"
+
+[package.extras]
+docs = ["Sphinx (>=1.8.1)", "docutils", "pylons-sphinx-themes (>=1.0.8)"]
+tests = ["nose (<1.3.0)", "coverage", "mock", "pastedeploy", "wsgiproxy2", "pyquery"]
 
 [[package]]
-category = "dev"
-description = "Backport of pathlib-compatible object wrapper for zip files"
 name = "zipp"
+version = "0.5.2"
+description = "Backport of pathlib-compatible object wrapper for zip files"
+category = "dev"
 optional = false
 python-versions = ">=2.7"
-version = "0.5.2"
+
+[package.extras]
+docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
+testing = ["pathlib2", "contextlib2", "unittest2"]
 
 [metadata]
-content-hash = "baac214d5b1d5c845755b9af28e005e79a0f6f38020fe31e7aee46d5260cdc79"
+lock-version = "1.1"
 python-versions = "^3.6"
+content-hash = "baac214d5b1d5c845755b9af28e005e79a0f6f38020fe31e7aee46d5260cdc79"
 
-[metadata.hashes]
-appdirs = ["9e5896d1372858f8dd3344faf4e5014d21849c756c8d5701f78f8a103b372d92", "d8b24664561d0d34ddfaec54636d502d7cea6e29c3eaf68f3df6180863e2166e"]
-atomicwrites = ["03472c30eb2c5d1ba9227e4c2ca66ab8287fbfbbda3888aa93dc2e28fc6811b4", "75a9445bac02d8d058d5e1fe689654ba5a6556a1dfd8ce6ec55a0ed79866cfa6"]
-attrs = ["69c0dbf2ed392de1cb5ec704444b08a5ef81680a61cb899dc08127123af36a79", "f0b870f674851ecbfbbbd364d6b5cbdff9dcedbc7f3f5e18a6891057f21fe399"]
-beautifulsoup4 = ["05668158c7b85b791c5abde53e50265e16f98ad601c402ba44d70f96c4159612", "25288c9e176f354bf277c0a10aa96c782a6a18a17122dba2e8cec4a97e03343b", "f040590be10520f2ea4c2ae8c3dae441c7cfff5308ec9d58a0ec0c1b8f81d469"]
-black = ["817243426042db1d36617910df579a54f1afd659adb96fc5032fcf4b36209739", "e030a9a28f542debc08acceb273f228ac422798e5215ba2a791a6ddeaaca22a5"]
-bottle = ["1896a33b2c7c5be07491e6789e341f2e9593a0ff024cc0374615118587c81647", "e9eaa412a60cc3d42ceb42f58d15864d9ed1b92e9d630b8130c871c5bb16107c"]
-click = ["2335065e6395b9e67ca716de5f7526736bfa6ceead690adf616d925bdc622b13", "5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7"]
-colorama = ["05eed71e2e327246ad6b38c540c4a3117230b19679b875190486ddd2d721422d", "f8ac84de7840f5b9c4e3347b3c1eaa50f7e49c2b07596221daec5edaabbd7c48"]
-dnspython = ["36c5e8e38d4369a08b6780b7f27d790a292b2b08eea01607865bf0936c558e01", "f69c21288a962f4da86e56c4905b49d11aba7938d3d740e80d9e366ee4f1632d"]
-importlib-metadata = ["23d3d873e008a513952355379d93cbcab874c58f4f034ff657c7a87422fa64e8", "80d2de76188eabfbfcf27e6a37342c2827801e59c4cc14b0371c56fed43820e3"]
-more-itertools = ["409cd48d4db7052af495b09dec721011634af3753ae1ef92d2b32f73a745f832", "92b8c4b06dac4f0611c0729b2f2ede52b2e1bac1ab48f089c7ddc12e26bb60c4"]
-pluggy = ["0825a152ac059776623854c1543d65a4ad408eb3d33ee114dff91e57ec6ae6fc", "b9817417e95936bf75d85d3f8767f7df6cdde751fc40aed3bb3074cbcb77757c"]
-py = ["64f65755aee5b381cea27766a3a147c3f15b9b6b9ac88676de66ba2ae36793fa", "dc639b046a6e2cff5bbe40194ad65936d6ba360b52b3c3fe1d08a82dd50b5e53"]
-pytest = ["3f193df1cfe1d1609d4c583838bea3d532b18d6160fd3f55c9447fdca30848ec", "e246cf173c01169b9617fc07264b7b1316e78d7a650055235d6d897bc80d9660"]
-six = ["3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c", "d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"]
-soupsieve = ["8662843366b8d8779dec4e2f921bebec9afd856a5ff2e82cd419acc5054a1a92", "a5a6166b4767725fd52ae55fee8c8b6137d9a51e9f1edea461a062a759160118"]
-tld = ["13fce7a3068034504580831b01e2e792c8969aa340c4613b43cd4993069b8415", "f766638e4e972445ce18e4dc0fadc0189c0a2a4f7d15e50c3c25d49af9cb1744"]
-toml = ["229f81c57791a41d65e399fc06bf0848bab550a9dfd5ed66df18ce5f05e73d5c", "235682dd292d5899d361a811df37e04a8828a5b1da3115886b73cf81ebc9100e", "f1db651f9657708513243e61e6cc67d101a39bad662eaa9b5546f789338e07a3"]
-waitress = ["67a60a376f0eb335ed88967c42b73983a58d66a2a72eb9009a42725f7453b142", "cbf1c62fc41393a6f27cb78483f8f6e252630a3598984668244b7bf4e35856f1"]
-webob = ["05aaab7975e0ee8af2026325d656e5ce14a71f1883c52276181821d6d5bf7086", "36db8203c67023d68c1b00208a7bf55e3b10de2aa317555740add29c619de12b"]
-webtest = ["41348efe4323a647a239c31cde84e5e440d726ca4f449859264e538d39037fd0", "f3a603b8f1dd873b9710cd5a7dd0889cf758d7e1c133b1dae971c04f567e566e"]
-zipp = ["4970c3758f4e89a7857a973b1e2a5d75bcdc47794442f2e2dd4fe8e0466e809a", "8a5712cfd3bb4248015eb3b0b3c54a5f6ee3f2425963ef2a0125b8bc40aafaec"]
+[metadata.files]
+appdirs = [
+    {file = "appdirs-1.4.3-py2.py3-none-any.whl", hash = "sha256:d8b24664561d0d34ddfaec54636d502d7cea6e29c3eaf68f3df6180863e2166e"},
+    {file = "appdirs-1.4.3.tar.gz", hash = "sha256:9e5896d1372858f8dd3344faf4e5014d21849c756c8d5701f78f8a103b372d92"},
+]
+atomicwrites = [
+    {file = "atomicwrites-1.3.0-py2.py3-none-any.whl", hash = "sha256:03472c30eb2c5d1ba9227e4c2ca66ab8287fbfbbda3888aa93dc2e28fc6811b4"},
+    {file = "atomicwrites-1.3.0.tar.gz", hash = "sha256:75a9445bac02d8d058d5e1fe689654ba5a6556a1dfd8ce6ec55a0ed79866cfa6"},
+]
+attrs = [
+    {file = "attrs-19.1.0-py2.py3-none-any.whl", hash = "sha256:69c0dbf2ed392de1cb5ec704444b08a5ef81680a61cb899dc08127123af36a79"},
+    {file = "attrs-19.1.0.tar.gz", hash = "sha256:f0b870f674851ecbfbbbd364d6b5cbdff9dcedbc7f3f5e18a6891057f21fe399"},
+]
+beautifulsoup4 = [
+    {file = "beautifulsoup4-4.8.0-py2-none-any.whl", hash = "sha256:05668158c7b85b791c5abde53e50265e16f98ad601c402ba44d70f96c4159612"},
+    {file = "beautifulsoup4-4.8.0-py3-none-any.whl", hash = "sha256:f040590be10520f2ea4c2ae8c3dae441c7cfff5308ec9d58a0ec0c1b8f81d469"},
+    {file = "beautifulsoup4-4.8.0.tar.gz", hash = "sha256:25288c9e176f354bf277c0a10aa96c782a6a18a17122dba2e8cec4a97e03343b"},
+]
+black = [
+    {file = "black-18.9b0-py36-none-any.whl", hash = "sha256:817243426042db1d36617910df579a54f1afd659adb96fc5032fcf4b36209739"},
+    {file = "black-18.9b0.tar.gz", hash = "sha256:e030a9a28f542debc08acceb273f228ac422798e5215ba2a791a6ddeaaca22a5"},
+]
+bottle = [
+    {file = "bottle-0.12.17-py3-none-any.whl", hash = "sha256:1896a33b2c7c5be07491e6789e341f2e9593a0ff024cc0374615118587c81647"},
+    {file = "bottle-0.12.17.tar.gz", hash = "sha256:e9eaa412a60cc3d42ceb42f58d15864d9ed1b92e9d630b8130c871c5bb16107c"},
+]
+click = [
+    {file = "Click-7.0-py2.py3-none-any.whl", hash = "sha256:2335065e6395b9e67ca716de5f7526736bfa6ceead690adf616d925bdc622b13"},
+    {file = "Click-7.0.tar.gz", hash = "sha256:5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7"},
+]
+colorama = [
+    {file = "colorama-0.4.1-py2.py3-none-any.whl", hash = "sha256:f8ac84de7840f5b9c4e3347b3c1eaa50f7e49c2b07596221daec5edaabbd7c48"},
+    {file = "colorama-0.4.1.tar.gz", hash = "sha256:05eed71e2e327246ad6b38c540c4a3117230b19679b875190486ddd2d721422d"},
+]
+dnspython = [
+    {file = "dnspython-1.16.0-py2.py3-none-any.whl", hash = "sha256:f69c21288a962f4da86e56c4905b49d11aba7938d3d740e80d9e366ee4f1632d"},
+    {file = "dnspython-1.16.0.zip", hash = "sha256:36c5e8e38d4369a08b6780b7f27d790a292b2b08eea01607865bf0936c558e01"},
+]
+importlib-metadata = [
+    {file = "importlib_metadata-0.19-py2.py3-none-any.whl", hash = "sha256:80d2de76188eabfbfcf27e6a37342c2827801e59c4cc14b0371c56fed43820e3"},
+    {file = "importlib_metadata-0.19.tar.gz", hash = "sha256:23d3d873e008a513952355379d93cbcab874c58f4f034ff657c7a87422fa64e8"},
+]
+more-itertools = [
+    {file = "more-itertools-7.2.0.tar.gz", hash = "sha256:409cd48d4db7052af495b09dec721011634af3753ae1ef92d2b32f73a745f832"},
+    {file = "more_itertools-7.2.0-py3-none-any.whl", hash = "sha256:92b8c4b06dac4f0611c0729b2f2ede52b2e1bac1ab48f089c7ddc12e26bb60c4"},
+]
+pluggy = [
+    {file = "pluggy-0.12.0-py2.py3-none-any.whl", hash = "sha256:b9817417e95936bf75d85d3f8767f7df6cdde751fc40aed3bb3074cbcb77757c"},
+    {file = "pluggy-0.12.0.tar.gz", hash = "sha256:0825a152ac059776623854c1543d65a4ad408eb3d33ee114dff91e57ec6ae6fc"},
+]
+py = [
+    {file = "py-1.10.0-py2.py3-none-any.whl", hash = "sha256:3b80836aa6d1feeaa108e046da6423ab8f6ceda6468545ae8d02d9d58d18818a"},
+    {file = "py-1.10.0.tar.gz", hash = "sha256:21b81bda15b66ef5e1a777a21c4dcd9c20ad3efd0b3f817e7a809035269e1bd3"},
+]
+pytest = [
+    {file = "pytest-3.10.1-py2.py3-none-any.whl", hash = "sha256:3f193df1cfe1d1609d4c583838bea3d532b18d6160fd3f55c9447fdca30848ec"},
+    {file = "pytest-3.10.1.tar.gz", hash = "sha256:e246cf173c01169b9617fc07264b7b1316e78d7a650055235d6d897bc80d9660"},
+]
+six = [
+    {file = "six-1.12.0-py2.py3-none-any.whl", hash = "sha256:3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c"},
+    {file = "six-1.12.0.tar.gz", hash = "sha256:d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"},
+]
+soupsieve = [
+    {file = "soupsieve-1.9.3-py2.py3-none-any.whl", hash = "sha256:a5a6166b4767725fd52ae55fee8c8b6137d9a51e9f1edea461a062a759160118"},
+    {file = "soupsieve-1.9.3.tar.gz", hash = "sha256:8662843366b8d8779dec4e2f921bebec9afd856a5ff2e82cd419acc5054a1a92"},
+]
+tld = [
+    {file = "tld-0.9.3-py2.py3-none-any.whl", hash = "sha256:13fce7a3068034504580831b01e2e792c8969aa340c4613b43cd4993069b8415"},
+    {file = "tld-0.9.3.tar.gz", hash = "sha256:f766638e4e972445ce18e4dc0fadc0189c0a2a4f7d15e50c3c25d49af9cb1744"},
+]
+toml = [
+    {file = "toml-0.10.0-py2.7.egg", hash = "sha256:f1db651f9657708513243e61e6cc67d101a39bad662eaa9b5546f789338e07a3"},
+    {file = "toml-0.10.0-py2.py3-none-any.whl", hash = "sha256:235682dd292d5899d361a811df37e04a8828a5b1da3115886b73cf81ebc9100e"},
+    {file = "toml-0.10.0.tar.gz", hash = "sha256:229f81c57791a41d65e399fc06bf0848bab550a9dfd5ed66df18ce5f05e73d5c"},
+]
+waitress = [
+    {file = "waitress-1.4.2-py2.py3-none-any.whl", hash = "sha256:cbf1c62fc41393a6f27cb78483f8f6e252630a3598984668244b7bf4e35856f1"},
+    {file = "waitress-1.4.2.tar.gz", hash = "sha256:67a60a376f0eb335ed88967c42b73983a58d66a2a72eb9009a42725f7453b142"},
+]
+webob = [
+    {file = "WebOb-1.8.5-py2.py3-none-any.whl", hash = "sha256:36db8203c67023d68c1b00208a7bf55e3b10de2aa317555740add29c619de12b"},
+    {file = "WebOb-1.8.5.tar.gz", hash = "sha256:05aaab7975e0ee8af2026325d656e5ce14a71f1883c52276181821d6d5bf7086"},
+]
+webtest = [
+    {file = "WebTest-2.0.33-py2.py3-none-any.whl", hash = "sha256:f3a603b8f1dd873b9710cd5a7dd0889cf758d7e1c133b1dae971c04f567e566e"},
+    {file = "WebTest-2.0.33.tar.gz", hash = "sha256:41348efe4323a647a239c31cde84e5e440d726ca4f449859264e538d39037fd0"},
+]
+zipp = [
+    {file = "zipp-0.5.2-py2.py3-none-any.whl", hash = "sha256:8a5712cfd3bb4248015eb3b0b3c54a5f6ee3f2425963ef2a0125b8bc40aafaec"},
+    {file = "zipp-0.5.2.tar.gz", hash = "sha256:4970c3758f4e89a7857a973b1e2a5d75bcdc47794442f2e2dd4fe8e0466e809a"},
+]
