@@ -7,7 +7,7 @@ authors = ["j0lv3r4 <juan@jolvera.dev>"]
 [tool.poetry.dependencies]
 python = "^3.6"
 dnspython = "^1.16"
-bottle = "^0.12.17"
+bottle = "^0.12.20"
 tld = "^0.9.3"
 [tool.poetry.dev-dependencies]
 webtest = "^2.0"
